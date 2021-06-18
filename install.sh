@@ -35,3 +35,22 @@ tlmgr install latex-bin tex xetex
 
 # Metafont
 tlmgr install metafont mfware
+
+# Required for typsesetting docs
+tlmgr install \
+  alphalph  \
+  amsfonts  \
+  amsmath   \
+  booktabs  \
+  colortbl  \
+  csquotes  \
+  ec        \
+  enumitem  \
+  fancyvrb  \
+  hologo    \
+  hyperref  \
+  makeindex \
+  oberdiek  \
+  psnfss    \
+  tools     \
+  underscore
