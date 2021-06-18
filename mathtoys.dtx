@@ -58,6 +58,11 @@
 %
 % \begin{documentation}
 %
+% \begin{variable}{\l_mathtoys_display_bool}
+%   Boolean which is \texttt{true} whenever material is being typeset in a
+%   logical display environment.
+% \end{variable}
+%
 % \end{documentation}
 %
 % \begin{implementation}
@@ -86,6 +91,28 @@
 \ProvidesExplPackage {mathtoys} {2021-06-18} {0.0.0}
   {Experiments in math mode}
 %    \end{macrocode}
+%
+% \begin{macro}{\l_mathtoys_dipslay_bool}
+%   The test \tn{ifinner} is unreliable for distinguishing whether we are in a
+%   displayed formula or an inline formula: any display more complex than a
+%   simple one-line equation typically involves the use of
+%   \begin{verbatim}
+%     $ \dispplaystyle ... $
+%   \end{verbatim}
+%   instead of
+%   \begin{verbatim}
+%     $$ ... $$
+%   \end{verbatim}
+%   So we provide a more reliable test, in the same way \pkg{amsmath} does.
+%    \begin{macrocode}
+\bool_new:N \l_mathtoys_display_bool
+\tex_everydisplay:D \exp_after:wN
+  {
+    \tex_the:D \tex_everydisplay:D
+    \bool_set_true:N \l_mathtoys_display_bool
+  }
+%    \end{macrocode}
+% \end{macro}
 %
 %    \begin{macrocode}
 %</package>
