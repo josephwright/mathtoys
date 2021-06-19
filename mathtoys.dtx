@@ -78,6 +78,8 @@
 %<@@=mathtoys>
 %    \end{macrocode}
 %
+% \subsection{Setup}
+%
 % Load only the essential support (\pkg{expl3}) \enquote{up-front}, and
 % only if required.
 %    \begin{macrocode}
@@ -91,6 +93,8 @@
 \ProvidesExplPackage {mathtoys} {2021-06-18} {0.0.0}
   {Experiments in math mode}
 %    \end{macrocode}
+%
+% \subsection{Mechanisms}
 %
 % \begin{macro}{\l_mathtoys_display_bool}
 %   The test \tn{ifinner} is unreliable for distinguishing whether we are in a
@@ -113,6 +117,28 @@
   }
 %    \end{macrocode}
 % \end{macro}
+%
+% \subsection{User interfaces}
+%
+% The user interfaces are defined in terms of documented code-level ones.
+% This is all done here, and will appear in the \file{.sty} file before the
+% relevant code. Things could be re-arranged by \pkg{DocStrip} but there is no
+% advantage.
+%
+% \begin{macro}{\IfFormatAtLeastTF}
+%   Not present in older kernels: use the \LaTeXe{} mechanism as this is correct
+%   for this case.
+%    \begin{macrocode}
+\providecommand \IfFormatAtLeastTF { \@ifl@t@r \fmtversion }
+%    \end{macrocode}
+% \end{macro}
+%
+% User level interfaces are all created by \pkg{xparse}
+%    \begin{macrocode}
+\IfFormatAtLeastTF { 2020-10-01 }
+  { }
+  { \RequirePackage { xparse } }
+%    \end{macrocode}
 %
 %    \begin{macrocode}
 %</package>
